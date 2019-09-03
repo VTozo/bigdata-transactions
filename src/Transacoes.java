@@ -1,5 +1,6 @@
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.Job;
@@ -24,14 +25,14 @@ public class Transacoes {
 
         // Registrar as classes
         j.setJarByClass(Transacoes.class);
-        j.setMapperClass(TransacoesMapper.class);
-        j.setReducerClass(TransacoesReducer.class);
+        j.setMapperClass(TransacoesMapper_1.class);
+        j.setReducerClass(TransacoesReducer_1.class);
 
         // Definição dos tipos de saída
         j.setMapOutputKeyClass(Text.class);
-        j.setMapOutputValueClass(TransacoesWritable.class);
+        j.setMapOutputValueClass(IntWritable.class);
         j.setOutputKeyClass(Text.class);
-        j.setOutputValueClass(TransacoesWritable.class);
+        j.setOutputValueClass(IntWritable.class);
 
         // Passando para o job os arquivos de entrada e saída
         FileInputFormat.addInputPath(j, input);
