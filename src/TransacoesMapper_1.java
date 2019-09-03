@@ -8,12 +8,17 @@ public class TransacoesMapper_1 extends Mapper<Object, Text, Text, IntWritable> 
 
     public void map(Object key, Text value, Context context) throws IOException,
             InterruptedException {
+
+        // Cada linha
         String conteudo = value.toString();
+        // Separar por colunas
         String[] valores = conteudo.split(";");
 
+        // A chave é a mercadoria
         Text chave = new Text(valores[3]);
 
-        if(valores[0].equals("Brazil")){
+        // Apenas se o país for 'Brazil'
+        if (valores[0].equals("Brazil")) {
             // Passando isso pro reduce
             context.write(chave, new IntWritable(1));
         }

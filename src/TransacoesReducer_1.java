@@ -12,11 +12,13 @@ public class TransacoesReducer_1 extends Reducer<Text, IntWritable, Text, IntWri
 
         int soma = 0;
 
+        // Para cada valor
         for (IntWritable v : values
         ) {
             soma += v.get();
         }
 
+        // Variável de saída
         IntWritable saida = new IntWritable(soma);
 
         context.write(key, saida);
