@@ -99,6 +99,43 @@ public class Transacoes {
                 j.setOutputKeyClass(Text.class);
                 j.setOutputValueClass(FloatWritable.class);
                 break;
+            case "6":
+                // Registrar as classes
+                j.setJarByClass(Transacoes.class);
+                j.setMapperClass(TransacoesMapper_6.class);
+                j.setReducerClass(TransacoesReducer_6.class);
+
+                // Definição dos tipos de saída
+                j.setMapOutputKeyClass(Text.class);
+                j.setMapOutputValueClass(TransacoesWritable.class);
+                j.setOutputKeyClass(Text.class);
+                j.setOutputValueClass(FloatWritable.class);
+                break;
+            case "7":
+                // Registrar as classes
+                j.setJarByClass(Transacoes.class);
+                j.setMapperClass(TransacoesMapper_7.class);
+                j.setReducerClass(TransacoesReducer_7.class);
+
+                // Definição dos tipos de saída
+                j.setMapOutputKeyClass(Text.class);
+                j.setMapOutputValueClass(TransacoesWritable.class);
+                j.setOutputKeyClass(Text.class);
+                j.setOutputValueClass(FloatWritable.class);
+                break;
+            case "8":
+                // Registrar as classes
+                j.setJarByClass(Transacoes.class);
+                j.setMapperClass(TransacoesMapper_8.class);
+                j.setCombinerClass(TransacoesReducer_8.class);
+                j.setReducerClass(TransacoesReducer_8.class);
+
+                // Definição dos tipos de saída
+                j.setMapOutputKeyClass(Text.class);
+                j.setMapOutputValueClass(IntWritable.class);
+                j.setOutputKeyClass(Text.class);
+                j.setOutputValueClass(IntWritable.class);
+                break;
 
         }
 

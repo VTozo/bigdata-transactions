@@ -8,8 +8,8 @@ class TransacoesWritable implements Writable {
 
     private int n = 0;
     private int codigo = 0;
-    private int valor = 0;
     private int quantidade = 0;
+    private long valor = 0;
     private long peso = 0;
     private String pais = "";
     private String mercadoria = "";
@@ -24,12 +24,14 @@ class TransacoesWritable implements Writable {
     public void readFields(DataInput in) throws IOException {
         n = Integer.parseInt(in.readUTF());
         peso = Long.parseLong(in.readUTF());
+        valor = Long.parseLong(in.readUTF());
     }
 
     @Override
     public void write(DataOutput out) throws IOException {
         out.writeUTF(String.valueOf(n));
         out.writeUTF(String.valueOf(peso));
+        out.writeUTF(String.valueOf(valor));
     }
 
     public int getN() {
@@ -48,11 +50,11 @@ class TransacoesWritable implements Writable {
         this.codigo = codigo;
     }
 
-    public int getValor() {
+    public long getValor() {
         return valor;
     }
 
-    public void setValor(int valor) {
+    public void setValor(long valor) {
         this.valor = valor;
     }
 
