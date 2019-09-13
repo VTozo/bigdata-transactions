@@ -14,7 +14,7 @@ public class TransacoesMapper_2 extends Mapper<Object, Text, Text, IntWritable> 
         // Separar por colunas
         String[] valores = conteudo.split(";");
 
-        // A chave é a mercadoria
+        // A chave é o ano
         Text chave = new Text(valores[1]);
 
         // Passando isso pro reduce

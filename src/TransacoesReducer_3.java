@@ -10,17 +10,16 @@ public class TransacoesReducer_3 extends Reducer<Text, IntWritable, Text, IntWri
                        Iterable<IntWritable> values,
                        Context context) throws IOException, InterruptedException {
 
-        int maior = 0;
+        int soma = 0;
 
         // Para cada valor
         for (IntWritable v : values
         ) {
-            if (v.get() > maior)
-            maior = v.get();
+            soma += v.get();
         }
 
         // Variável de saída
-        IntWritable saida = new IntWritable(maior);
+        IntWritable saida = new IntWritable(soma);
 
         context.write(key, saida);
 

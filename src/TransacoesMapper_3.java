@@ -14,11 +14,11 @@ public class TransacoesMapper_3 extends Mapper<Object, Text, Text, IntWritable> 
         // Separar por colunas
         String[] valores = conteudo.split(";");
 
-        // A chave é definida
-        Text chave = new Text("Maior");
+        // A chave é a mercadoria
+        Text chave = new Text(valores[3]);
 
         // Apenas se o país for 'Brazil'
-        if (valores[0].equals("Brazil")) {
+        if (valores[0].equals("Brazil") && valores[1].equals("2016")) {
             // Passando isso pro reduce
             context.write(chave, new IntWritable(1));
         }
