@@ -87,6 +87,18 @@ public class Transacoes {
                 j.setOutputKeyClass(Text.class);
                 j.setOutputValueClass(FloatWritable.class);
                 break;
+            case "5":
+                // Registrar as classes
+                j.setJarByClass(Transacoes.class);
+                j.setMapperClass(TransacoesMapper_5.class);
+                j.setReducerClass(TransacoesReducer_5.class);
+
+                // Definição dos tipos de saída
+                j.setMapOutputKeyClass(Text.class);
+                j.setMapOutputValueClass(TransacoesWritable.class);
+                j.setOutputKeyClass(Text.class);
+                j.setOutputValueClass(FloatWritable.class);
+                break;
 
         }
 
