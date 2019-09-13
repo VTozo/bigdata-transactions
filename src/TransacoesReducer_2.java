@@ -10,6 +10,8 @@ public class TransacoesReducer_2 extends Reducer<Text, IntWritable, Text, IntWri
                        Iterable<IntWritable> values,
                        Context context) throws IOException, InterruptedException {
 
+        if (key.toString().equals("year")) return;
+
         int soma = 0;
 
         // Para cada valor

@@ -13,23 +13,25 @@ public class Transacoes {
 
     public static void main(String[] args) throws Exception {
 
+        // Criação objeto scanner para receber input do usuário
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Digite o número do exercício: ");
+
+        // Leitura do input do usuário
+        String exercicio = scanner.nextLine();
+
         BasicConfigurator.configure();
         Configuration c = new Configuration();
 
-        // arquivo de entrada
+        // Arquivo de entrada
         Path input = new Path("in\\transactions.csv");
 
-        // arquivo de saida
+        // Arquivo de saida, com nome único para cada resultado
         Path output = new Path("output\\transactions-" + System.currentTimeMillis());
 
         // criacao do job e seu nome
         Job j = Job.getInstance(c, "transacoes");
-
-        Scanner scanner = new Scanner(System.in);  // Criar objeto scanner para receber input do usuário
-
-        System.out.println("Digite o número do exercício: ");
-
-        String exercicio = scanner.nextLine();  // Ler input do usuário
 
         switch (exercicio) {
             case "1":

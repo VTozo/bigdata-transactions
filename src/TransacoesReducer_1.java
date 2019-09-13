@@ -10,6 +10,8 @@ public class TransacoesReducer_1 extends Reducer<Text, IntWritable, Text, IntWri
                        Iterable<IntWritable> values,
                        Context context) throws IOException, InterruptedException {
 
+        if (key.toString().equals("commodity")) return;
+
         int soma = 0;
 
         // Para cada valor
