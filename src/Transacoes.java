@@ -1,5 +1,6 @@
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.FloatWritable;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
@@ -73,6 +74,18 @@ public class Transacoes {
                 j.setMapOutputValueClass(IntWritable.class);
                 j.setOutputKeyClass(Text.class);
                 j.setOutputValueClass(IntWritable.class);
+                break;
+            case "4":
+                // Registrar as classes
+                j.setJarByClass(Transacoes.class);
+                j.setMapperClass(TransacoesMapper_4.class);
+                j.setReducerClass(TransacoesReducer_4.class);
+
+                // Definição dos tipos de saída
+                j.setMapOutputKeyClass(Text.class);
+                j.setMapOutputValueClass(TransacoesWritable.class);
+                j.setOutputKeyClass(Text.class);
+                j.setOutputValueClass(FloatWritable.class);
                 break;
 
         }

@@ -1,17 +1,16 @@
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.Writable;
-
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+
 
 class TransacoesWritable implements Writable {
 
     private int n = 0;
     private int codigo = 0;
     private int valor = 0;
-    private int peso = 0;
     private int quantidade = 0;
+    private long peso = 0;
     private String pais = "";
     private String mercadoria = "";
     private String fluxo = "";
@@ -23,17 +22,14 @@ class TransacoesWritable implements Writable {
 
     @Override
     public void readFields(DataInput in) throws IOException {
-
+        n = Integer.parseInt(in.readUTF());
+        peso = Long.parseLong(in.readUTF());
     }
 
     @Override
     public void write(DataOutput out) throws IOException {
-
-    }
-
-    @Override
-    public String toString() {
-        return "toString()";
+        out.writeUTF(String.valueOf(n));
+        out.writeUTF(String.valueOf(peso));
     }
 
     public int getN() {
@@ -60,11 +56,11 @@ class TransacoesWritable implements Writable {
         this.valor = valor;
     }
 
-    public int getPeso() {
+    public long getPeso() {
         return peso;
     }
 
-    public void setPeso(int peso) {
+    public void setPeso(long peso) {
         this.peso = peso;
     }
 
