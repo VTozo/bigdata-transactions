@@ -121,7 +121,7 @@ public class Transacoes {
                 j.setMapOutputKeyClass(Text.class);
                 j.setMapOutputValueClass(TransacoesWritable.class);
                 j.setOutputKeyClass(Text.class);
-                j.setOutputValueClass(FloatWritable.class);
+                j.setOutputValueClass(Text.class);
                 break;
             case "8":
                 // Registrar as classes
