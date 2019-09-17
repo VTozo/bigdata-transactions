@@ -25,6 +25,7 @@ class TransacoesWritable implements Writable {
         n = Integer.parseInt(in.readUTF());
         peso = Long.parseLong(in.readUTF());
         valor = Long.parseLong(in.readUTF());
+        mercadoria = in.readUTF();
     }
 
     @Override
@@ -32,6 +33,7 @@ class TransacoesWritable implements Writable {
         out.writeUTF(String.valueOf(n));
         out.writeUTF(String.valueOf(peso));
         out.writeUTF(String.valueOf(valor));
+        out.writeUTF(String.valueOf(mercadoria));
     }
 
     public int getN() {
