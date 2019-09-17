@@ -1,32 +1,36 @@
-import org.apache.hadoop.io.FloatWritable;
+
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
 
-public class TransacoesReducer_7 extends Reducer<Text, TransacoesWritable, Text, FloatWritable> {
+public class TransacoesReducer_7 extends Reducer<Text, TransacoesWritable, Text, Text> {
 
     public void reduce(Text key,
                        Iterable<TransacoesWritable> values,
                        Context context) throws IOException, InterruptedException {
 
-        float valorPeso = 0;
+        float maiorValor = 0;
+        String maiorMercadoria = "error";
+        String saidaTemp = " ";
 
         // Para cada valor
         for (TransacoesWritable v : values
         ) {
-            if (v.getPeso() == 0) return;
+            if (v.getPeso() == 0) continue;
             float temp = ((float) v.getValor() / v.getPeso());
-            if (valorPeso < temp) {
-                valorPeso = temp;
+            if (maiorValor < temp) {
+                maiorValor = temp;
+                maiorMercadoria = v.getMercadoria();
+                saidaTemp = maiorMercadoria + " " + maiorValor;
             }
         }
 
         // Variável de saída
-        float Maior_valor_peso = valorPeso;
-        FloatWritable saida = new FloatWritable(Maior_valor_peso);
+        Text saida = new Text(saidaTemp);
 
         context.write(key, saida);
 
     }
+
 }
