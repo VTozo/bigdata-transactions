@@ -29,7 +29,7 @@ public class Transacoes {
         Path input = new Path("in\\transactions.csv");
 
         // Arquivo de saida, com nome único para cada resultado
-        Path output = new Path("output\\transactions-" + System.currentTimeMillis());
+        Path output = new Path("output\\transactions-exercicio-"+exercicio+"-" + System.currentTimeMillis());
 
         // criacao do job e seu nome
         Job j = Job.getInstance(c, "transacoes");
@@ -66,14 +66,13 @@ public class Transacoes {
                 // Registrar as classes
                 j.setJarByClass(Transacoes.class);
                 j.setMapperClass(TransacoesMapper_3.class);
-                j.setCombinerClass(TransacoesReducer_3.class);
                 j.setReducerClass(TransacoesReducer_3.class);
 
                 // Definição dos tipos de saída
                 j.setMapOutputKeyClass(Text.class);
-                j.setMapOutputValueClass(IntWritable.class);
+                j.setMapOutputValueClass(TransacoesWritable.class);
                 j.setOutputKeyClass(Text.class);
-                j.setOutputValueClass(IntWritable.class);
+                j.setOutputValueClass(Text.class);
                 break;
             case "4":
                 // Registrar as classes

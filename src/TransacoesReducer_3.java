@@ -3,25 +3,44 @@ import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
+import java.util.HashMap;
 
-public class TransacoesReducer_3 extends Reducer<Text, IntWritable, Text, IntWritable> {
+public class TransacoesReducer_3 extends Reducer<Text, TransacoesWritable, Text, Text> {
 
     public void reduce(Text key,
-                       Iterable<IntWritable> values,
+                       Iterable<TransacoesWritable> values,
                        Context context) throws IOException, InterruptedException {
 
-        int soma = 0;
+        // Cria um HashMap para armazenar os valores
+        HashMap<String, Integer> hashMap = new HashMap<>();
 
         // Para cada valor
-        for (IntWritable v : values
+        for (TransacoesWritable v : values
         ) {
-            soma += v.get();
+            if (hashMap.get(v.getMercadoria()) != null) {
+                Integer novoN = hashMap.get(v.getMercadoria()) + v.getN();
+                hashMap.put(v.getMercadoria(), novoN);
+            } else {
+                hashMap.put(v.getMercadoria(), v.getN());
+            }
         }
 
+        Integer maiorN = 0;
         // Variável de saída
-        IntWritable saida = new IntWritable(soma);
+        String saida = "";
 
-        context.write(key, saida);
+        // Para cada valor na HashMap
+        for (HashMap.Entry<String, Integer> pair : hashMap.entrySet()) {
+            
+            if (pair.getValue() > maiorN) {
+                maiorN = pair.getValue();
+                saida = "\n" + pair.getKey() + " " + pair.getValue();
+            } else if (pair.getValue().equals(maiorN)) {
+                saida += "\n" + pair.getKey() + " " + pair.getValue();
+            }
+        }
+
+        context.write(key, new Text(saida));
 
     }
 }
