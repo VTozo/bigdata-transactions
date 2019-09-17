@@ -15,7 +15,8 @@ public class TransacoesReducer_7 extends Reducer<Text, TransacoesWritable, Text,
         // Para cada valor
         for (TransacoesWritable v : values
         ) {
-            float temp = (v.getValor() / v.getPeso());
+            if (v.getPeso() == 0) return;
+            float temp = ((float) v.getValor() / v.getPeso());
             if (valorPeso < temp) {
                 valorPeso = temp;
             }
